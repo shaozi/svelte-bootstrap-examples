@@ -1,122 +1,49 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-
-	const setTheme = function (theme: 'light' | 'dark' | 'auto') {
-		if (theme === 'auto') {
-			if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-				document.documentElement.setAttribute('data-bs-theme', 'dark');
-				setHighlightTheme('dark');
-			} else {
-				document.documentElement.setAttribute('data-bs-theme', 'light');
-				setHighlightTheme('light');
-			}
-		} else {
-			document.documentElement.setAttribute('data-bs-theme', theme);
-			setHighlightTheme(theme);
-		}
-		localStorage.setItem('theme', theme);
-		savedTheme = theme;
-	};
-
-	let savedTheme: 'light' | 'dark' | 'auto';
-
-	function setHighlightTheme(theme: 'dark' | 'light') {
-		let links = document.querySelectorAll('.hljs-theme');
-		console.log(links);
-		links.forEach((link) => {
-			if (link.getAttribute('title') == theme) {
-				link.removeAttribute('disabled');
-			} else {
-				link.setAttribute('disabled', 'disabled');
-			}
-		});
-	}
-
-	const getPreferredTheme = (): 'light' | 'dark' | 'auto' => {
-		const storedTheme = localStorage.getItem('theme');
-		if (storedTheme) {
-			if (storedTheme != 'light' && storedTheme != 'dark' && storedTheme != 'auto') {
-				return 'auto';
-			}
-			return storedTheme;
-		}
-		return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-	};
-	import hljs from 'highlight.js';
-	onMount(() => {});
-	onMount(() => {
-		savedTheme = getPreferredTheme();
-		setTheme(savedTheme);
-		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-			if (savedTheme == 'auto') {
-				setTheme(getPreferredTheme());
-			}
-		});
-		console.log('onMount called');
-	});
+	import type { LayoutData } from './$types';
+	import ThemeSwitch from './theme-switch.svelte';
+	export let data: LayoutData;
+	let routes = [
+		{ href: '/', name: 'Home' },
+		{ href: '/toasts', name: 'Toast' },
+		{ href: '/tooltips', name: 'Tooltip' }
+	];
 </script>
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top border-bottom">
-	<div class="container">
-		<span class="navbar-brand"><i class="bi-bootstrap-fill" /> Svelte Bootstrap</span>
-		<ul class="navbar-nav">
-			<li class="nv-item">
-				<a class="nav-link" href="/">Home</a>
-			</li>
-			<li class="nv-item">
-				<a class="nav-link" href="/toasts">Toasts</a>
-			</li>
-			<li class="nv-item">
-				<a class="nav-link" href="/tooltips">Tooltips</a>
-			</li>
+<main class="d-flex flex-nowrap">
+	<div
+		class="d-flex flex-column flex-shrink-0 p-3 border-end bg-body-tertiary"
+		style="height: 100vh; overflow-y: scroll;"
+	>
+		<div class="d-flex align-items-center justify-content-between">
+			<strong><i class="bi-bootstrap-fill" /> Svelte+Bootstrap</strong>
+		</div>
+		<hr />
+		<ul class="nav nav-pills flex-column mb-auto ps-3">
+			{#each routes as route}
+				<li class="nv-item">
+					<a class="nav-link" class:active={data.pathname == route.href} href={route.href}>
+						{route.name}
+					</a>
+				</li>
+			{/each}
 		</ul>
-
-		<ul class="navbar-nav ms-auto">
-			<li class="nav-item dropdown">
-				<button
-					class="nav-link border-0 bg-transparent dropdown-toggle"
-					data-bs-toggle="dropdown"
-					aria-expanded="false"
-				>
-					<i
-						class:bi-sun-fill={savedTheme == 'light'}
-						class:bi-moon-stars-fill={savedTheme == 'dark'}
-						class:bi-circle-half={savedTheme == 'auto'}
-					/>
-				</button>
-				<ul class="dropdown-menu p-1 dropdown-menu-end">
-					<li>
-						<button
-							class="dropdown-item rounded-1"
-							class:active={savedTheme == 'light'}
-							on:click={() => {
-								setTheme('light');
-							}}><i class="bi-sun-fill me-2" /> Light</button
-						>
-					</li>
-					<li>
-						<button
-							class="dropdown-item rounded-1 my-1"
-							class:active={savedTheme == 'dark'}
-							on:click={() => {
-								setTheme('dark');
-							}}><i class="bi-moon-stars-fill me-2" /> Dark</button
-						>
-					</li>
-					<li>
-						<button
-							class="dropdown-item rounded-1"
-							class:active={savedTheme == 'auto'}
-							on:click={() => {
-								setTheme('auto');
-							}}><i class="bi-circle-half me-2" /> Auto</button
-						>
-					</li>
-				</ul>
-			</li>
-		</ul>
+		<hr />
+		<div class="d-flex align-items-center">
+			<div class="text-secondary">Shaozi</div>
+			<div class="ms-auto">
+				<ThemeSwitch />
+			</div>
+		</div>
 	</div>
-</nav>
-<div style:margin-top={'5rem'} class="container">
-	<slot />
-</div>
+
+	<div class="container-fluid p-5 m-0" style="height: 100vh; overflow-y: scroll; flex-grow: 1">
+		<slot />
+	</div>
+</main>
+
+<style>
+	:global(body) {
+		height: 100vh;
+		overflow: hidden;
+	}
+</style>

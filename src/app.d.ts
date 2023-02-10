@@ -8,7 +8,7 @@ declare global {
 		// interface Platform {}
 	}
 	namespace svelteHTML {
-		interface HTMLAttributes<T> {
+		interface HTMLAttributes {
 			'on:hidden.bs.toast'?: () => void;
 		}
 	}
