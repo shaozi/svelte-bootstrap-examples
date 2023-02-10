@@ -25,7 +25,7 @@
 			<slot name="example" />
 		</div>
 		<div class="list-group-item bg-body-tertiary p-0">
-			<pre><code class="p-3 m-0">{code}</code></pre>
+			<pre><code class="p-4">{code}</code></pre>
 		</div>
 	</div>
 </article>
