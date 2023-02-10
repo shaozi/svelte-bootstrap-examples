@@ -1,16 +1,12 @@
 <script lang="ts">
-	import hljs from 'highlight.js';
-	import { onMount } from 'svelte';
+	import HighlightCode from './highlight-code.svelte';
 	export let title: string;
 	export let document: string;
 	export let code: string;
-	onMount(() => {
-		hljs.highlightAll();
-	});
 </script>
 
 <article class="my-4">
-	<h3>{title}</h3>
+	<h1>{title}</h1>
 	<div>
 		<a href={`https://getbootstrap.com/docs/5.3/components/${document}`}>
 			Bootstrap Document <i class="bi-box-arrow-up-right ms-2" />
@@ -24,8 +20,9 @@
 		<div class="list-group-item p-4">
 			<slot name="example" />
 		</div>
+		<div class="list-group-item bg-body-tertiary text-secondary">CODE</div>
 		<div class="list-group-item bg-body-tertiary p-0">
-			<pre><code class="p-4">{code}</code></pre>
+			<HighlightCode {code} />
 		</div>
 	</div>
 </article>

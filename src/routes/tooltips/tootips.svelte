@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Tooltip } from 'bootstrap';
 	import { onMount } from 'svelte';
-	import Article from './article.svelte';
+	import Article from '../article.svelte';
 	function initTooltips(): Tooltip[] {
 		const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
 		return [...tooltipTriggerList].map((tooltipTriggerEl) =>

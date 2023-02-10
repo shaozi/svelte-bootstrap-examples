@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Tooltips from '../tootips.svelte';
+	import Tooltips from './tootips.svelte';
 </script>
 
 <Tooltips />

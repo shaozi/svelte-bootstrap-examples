@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Toast } from 'bootstrap';
-	import Article from './article.svelte';
+	import Article from '../article.svelte';
 	let toastElement: HTMLElement;
 	let code = `
 <script lang="ts">
