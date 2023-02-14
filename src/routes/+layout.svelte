@@ -18,7 +18,7 @@
 		style="height: 100vh; overflow-y: scroll;"
 	>
 		<div class="d-flex align-items-center justify-content-between">
-			<div class="h5">
+			<div class="h5 mt-3">
 				<img src="/Svelte_Logo.svg" alt="svelte logo" height="24px" />
 				<span style="color: #FF3E00;"> Svelte</span>
 				+
@@ -45,7 +45,10 @@
 		</div>
 	</div>
 
-	<div class="container-fluid px-5 m-0" style="height: 100vh; overflow-y: scroll; flex-grow: 1">
+	<div
+		class="container-fluid px-5 py-4 m-0"
+		style="height: 100vh; overflow-y: scroll; flex-grow: 1"
+	>
 		<slot />
 	</div>
 </main>

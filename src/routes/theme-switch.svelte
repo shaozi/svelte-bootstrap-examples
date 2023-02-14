@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-
+	import { Dropdown } from 'bootstrap';
 	const setTheme = function (theme: 'light' | 'dark' | 'auto') {
 		if (theme === 'auto') {
 			if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -19,7 +19,7 @@
 	};
 
 	let savedTheme: 'light' | 'dark' | 'auto';
-
+	let dropdown: HTMLElement;
 	function setHighlightTheme(theme: 'dark' | 'light') {
 		let links = document.querySelectorAll('.hljs-theme');
 		console.log(links);
@@ -51,7 +51,7 @@
 				setTheme(getPreferredTheme());
 			}
 		});
-		console.log('onMount called');
+		Dropdown.getOrCreateInstance(dropdown);
 	});
 </script>
 
@@ -63,7 +63,7 @@
 			class:bi-circle-half={savedTheme == 'auto'}
 		/>
 	</button>
-	<ul class="dropdown-menu p-1 dropdown-menu-end">
+	<ul class="dropdown-menu p-1 dropdown-menu-end" bind:this={dropdown}>
 		<li>
 			<button
 				class="dropdown-item rounded-1"

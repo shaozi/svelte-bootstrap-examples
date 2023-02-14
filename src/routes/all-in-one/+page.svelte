@@ -24,7 +24,9 @@
 
 <div class="bd-cheatsheet container">
 	<section id="content">
-		<h2 class="fw-bold mt-5 pt-5 pb-2 pb-xl-3">Contents</h2>
+		<div class="banner">
+			<h2 class="fw-bold mt-5 pt-5 pb-2 pb-xl-3">Contents</h2>
+		</div>
 
 		<article class="my-3">
 			<div class="bd-heading"><h3>Offcanvas Drawer</h3></div>

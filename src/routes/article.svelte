@@ -5,7 +5,7 @@
 	export let code: string;
 </script>
 
-<article class="my-4">
+<article>
 	<h1>{title}</h1>
 	<div>
 		<a href={`https://getbootstrap.com/docs/5.3/components/${document}`}>

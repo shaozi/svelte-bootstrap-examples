@@ -3,10 +3,11 @@
 	import { onMount } from 'svelte';
 
 	export let code: string;
+
 	let html: string;
 	onMount(() => {
 		hljs.highlightAll();
 	});
 </script>
 
-<pre><code class="p-4">{code}</code></pre>
+<pre class={$$restProps.class || ''}><code class="p-4">{code}</code></pre>
