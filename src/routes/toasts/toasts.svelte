@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { Toast } from 'bootstrap';
 	import Article from '../article.svelte';
 	let toastElement: HTMLElement;
 	let code = `
@@ -73,7 +72,8 @@
 	<div slot="example">
 		<button
 			class="btn btn-primary"
-			on:click={() => {
+			on:click={async () => {
+				const { Toast } = await import('bootstrap');
 				let toast = Toast.getOrCreateInstance(toastElement);
 				toast.show();
 			}}

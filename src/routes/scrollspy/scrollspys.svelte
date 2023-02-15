@@ -1,17 +1,12 @@
 <script lang="ts">
-	import { ScrollSpy } from 'bootstrap';
 	import { onMount } from 'svelte';
 
-	function initScrollSpy(): ScrollSpy | null {
+	onMount(async () => {
+		const { ScrollSpy } = await import('bootstrap');
 		let node = document.querySelector('#scrollspy-area');
 		if (node) {
-			return new ScrollSpy(node, { target: '#navbar' });
+			new ScrollSpy(node, { target: '#navbar' });
 		}
-		return null;
-	}
-
-	onMount(() => {
-		initScrollSpy();
 	});
 </script>
 

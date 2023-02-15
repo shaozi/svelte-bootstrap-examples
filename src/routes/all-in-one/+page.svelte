@@ -1,24 +1,14 @@
 <script lang="ts">
-	import { Popover, ScrollSpy } from 'bootstrap';
 	import { onMount } from 'svelte';
 	import Toast from '../toasts/toasts.svelte';
 	import Tooltip from '../tooltips/tootips.svelte';
 
-	function initPopovers(): Popover[] {
+	onMount(async () => {
+		const { Popover, ScrollSpy } = await import('bootstrap');
 		let nodes = document.querySelectorAll('[data-bs-toggle="popover"]');
-		return [...nodes].map((popoverNode) => new Popover(popoverNode));
-	}
-	function initScrollSpy(): ScrollSpy | null {
-		let node = document.querySelector('.scrollspy-example');
-		if (node) {
-			return new ScrollSpy(node, { target: '#navbar-example2' });
-		}
-		return null;
-	}
-
-	onMount(() => {
-		initPopovers();
-		initScrollSpy();
+		[...nodes].map((popoverNode) => new Popover(popoverNode));
+		nodes = document.querySelectorAll('.scrollspy-example');
+		[...nodes].map((node) => new ScrollSpy(node, { target: '#navbar-example2' }));
 	});
 </script>
 

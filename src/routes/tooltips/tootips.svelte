@@ -1,15 +1,13 @@
 <script lang="ts">
-	import { Tooltip } from 'bootstrap';
 	import { onMount } from 'svelte';
 	import Article from '../article.svelte';
-	function initTooltips(): Tooltip[] {
+
+	onMount(async () => {
+		const { Tooltip } = await import('bootstrap');
 		const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-		return [...tooltipTriggerList].map((tooltipTriggerEl) =>
+		let tips = [...tooltipTriggerList].map((tooltipTriggerEl) =>
 			Tooltip.getOrCreateInstance(tooltipTriggerEl)
 		);
-	}
-	onMount(() => {
-		let tips = initTooltips();
 		console.log('tooltip onMount called');
 	});
 
