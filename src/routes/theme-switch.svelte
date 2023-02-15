@@ -43,7 +43,7 @@
 		return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 	};
 
-	onMount(() => {
+	onMount(async () => {
 		savedTheme = getPreferredTheme();
 		setTheme(savedTheme);
 		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
@@ -51,8 +51,8 @@
 				setTheme(getPreferredTheme());
 			}
 		});
-		const bootstrap = require('bootstrap');
-		bootstrap.Dropdown.getOrCreateInstance(dropdown);
+		const { Dropdown } = await import('bootstrap');
+		Dropdown.getOrCreateInstance(dropdown);
 	});
 </script>
 
