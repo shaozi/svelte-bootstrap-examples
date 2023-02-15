@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Dropdown } from 'bootstrap';
+	// import { Dropdown } from 'bootstrap';
 	const setTheme = function (theme: 'light' | 'dark' | 'auto') {
 		if (theme === 'auto') {
 			if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -51,7 +51,8 @@
 				setTheme(getPreferredTheme());
 			}
 		});
-		//Dropdown.getOrCreateInstance(dropdown);
+		const bootstrap = require('bootstrap');
+		bootstrap.Dropdown.getOrCreateInstance(dropdown);
 	});
 </script>
 
