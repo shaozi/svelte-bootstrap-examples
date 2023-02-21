@@ -1,5 +1,5 @@
 import type { LayoutLoad } from './$types';
-export const load = (({ url }) => {
+export const load = (async ({ url }) => {
 	return {
 		pathname: url.pathname
 	};

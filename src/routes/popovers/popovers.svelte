@@ -1,14 +1,25 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount } from 'svelte'
 
 	onMount(async () => {
-		const { Popover } = await import('bootstrap');
-		let nodes = document.querySelectorAll('[data-bs-toggle="popover"]');
-		[...nodes].map((popoverNode) => new Popover(popoverNode));
-	});
+		const { Popover } = await import('bootstrap')
+		let nodes = document.querySelectorAll('[data-bs-toggle="popover"]')
+		;[...nodes].map((popoverNode) => new Popover(popoverNode))
+	})
 </script>
 
 <div>
+	<div class="mb-3">
+		<button
+			type="button"
+			class="btn btn-lg btn-danger"
+			data-bs-toggle="popover"
+			title="Popover title"
+			data-bs-content="And here's some amazing content. It's very engaging. Right?"
+			>Click to toggle popover</button
+		>
+	</div>
+
 	<button
 		type="button"
 		class="btn btn-secondary"

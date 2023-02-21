@@ -22,7 +22,7 @@
 		</div>
 		<div class="list-group-item bg-body-tertiary text-secondary">CODE</div>
 		<div class="list-group-item bg-body-tertiary p-0">
-			<HighlightCode {code} />
+			<HighlightCode class="px-4" {code} />
 		</div>
 	</div>
 </article>

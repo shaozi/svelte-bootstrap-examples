@@ -1,16 +1,13 @@
 <script>
-	import Article from '../article.svelte';
-	import Popovers from './popovers.svelte';
+	import Article from '../../lib/article.svelte'
+	import Popovers from './popovers.svelte'
 	let code = `<script lang="ts">
-	import { Popover } from 'bootstrap';
 	import { onMount } from 'svelte';
 
-	function initPopovers(): Popover[] {
+	onMount(async () => {
+		const { Popover } = await import('bootstrap');
 		let nodes = document.querySelectorAll('[data-bs-toggle="popover"]');
-		return [...nodes].map((popoverNode) => new Popover(popoverNode));
-	}
-	onMount(() => {
-		initPopovers();
+		[...nodes].map((popoverNode) => new Popover(popoverNode));
 	});
 <\/script>
 <button
@@ -23,7 +20,7 @@
 >
 	Popover on top
 </button>
-`;
+`
 </script>
 
 <Article title="Popovers" document="popovers" {code}>

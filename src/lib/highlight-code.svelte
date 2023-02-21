@@ -6,8 +6,10 @@
 
 	let html: string;
 	onMount(() => {
-		hljs.highlightAll();
+		html = hljs.highlightAuto(code).value;
 	});
 </script>
 
-<pre class={$$restProps.class || ''}><code class="p-4">{code}</code></pre>
+{#if html}
+	<pre class={$$restProps.class || ''}><code>{@html html}</code></pre>
+{/if}

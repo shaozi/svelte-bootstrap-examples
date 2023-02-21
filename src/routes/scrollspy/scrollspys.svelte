@@ -1,16 +1,15 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-
+	import { onMount } from 'svelte'
+	let scrollspyArea: HTMLElement
+	let navBar: HTMLElement
 	onMount(async () => {
-		const { ScrollSpy } = await import('bootstrap');
-		let node = document.querySelector('#scrollspy-area');
-		if (node) {
-			new ScrollSpy(node, { target: '#navbar' });
-		}
-	});
+		const { ScrollSpy } = await import('bootstrap')
+
+		ScrollSpy.getOrCreateInstance(scrollspyArea, { target: navBar })
+	})
 </script>
 
-<nav id="navbar" class="navbar">
+<nav bind:this={navBar} class="navbar">
 	<ul class="nav nav-pills">
 		<li class="nav-item">
 			<a class="nav-link active" href="#scrollspyHeading1">First</a>
@@ -36,7 +35,7 @@
 	</ul>
 </nav>
 <div
-	id="scrollspy-area"
+	bind:this={scrollspyArea}
 	data-bs-spy="scroll"
 	data-bs-target="#navbar"
 	data-bs-offset="0"

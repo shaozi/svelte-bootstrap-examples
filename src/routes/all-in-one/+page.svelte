@@ -1,15 +1,9 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import Toast from '../toasts/toasts.svelte';
-	import Tooltip from '../tooltips/tootips.svelte';
-
-	onMount(async () => {
-		const { Popover, ScrollSpy } = await import('bootstrap');
-		let nodes = document.querySelectorAll('[data-bs-toggle="popover"]');
-		[...nodes].map((popoverNode) => new Popover(popoverNode));
-		nodes = document.querySelectorAll('.scrollspy-example');
-		[...nodes].map((node) => new ScrollSpy(node, { target: '#navbar-example2' }));
-	});
+	import { onMount } from 'svelte'
+	import Toast from '../toasts/toasts.svelte'
+	import Tooltip from '../tooltips/tootips.svelte'
+	import Popovers from '../popovers/popovers.svelte'
+	import Scrollspys from '../scrollspy/scrollspys.svelte'
 </script>
 
 <div class="bd-cheatsheet container">
@@ -2073,59 +2067,7 @@
 			</div>
 
 			<div>
-				<div class="bd-example">
-					<button
-						type="button"
-						class="btn btn-lg btn-danger"
-						data-bs-toggle="popover"
-						title="Popover title"
-						data-bs-content="And here's some amazing content. It's very engaging. Right?"
-						>Click to toggle popover</button
-					>
-				</div>
-
-				<div class="bd-example">
-					<button
-						type="button"
-						class="btn btn-secondary"
-						data-bs-container="body"
-						data-bs-toggle="popover"
-						data-bs-placement="top"
-						data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
-					>
-						Popover on top
-					</button>
-					<button
-						type="button"
-						class="btn btn-secondary"
-						data-bs-container="body"
-						data-bs-toggle="popover"
-						data-bs-placement="right"
-						data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
-					>
-						Popover on end
-					</button>
-					<button
-						type="button"
-						class="btn btn-secondary"
-						data-bs-container="body"
-						data-bs-toggle="popover"
-						data-bs-placement="bottom"
-						data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
-					>
-						Popover on bottom
-					</button>
-					<button
-						type="button"
-						class="btn btn-secondary"
-						data-bs-container="body"
-						data-bs-toggle="popover"
-						data-bs-placement="left"
-						data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
-					>
-						Popover on start
-					</button>
-				</div>
+				<Popovers />
 			</div>
 		</article>
 		<article class="my-3" id="progress">
@@ -2228,76 +2170,7 @@
 			</div>
 
 			<div>
-				<div class="bd-example">
-					<nav id="navbar-example2" class="navbar navbar-light bg-light px-3">
-						<a class="navbar-brand" href="/">Navbar</a>
-						<ul class="nav nav-pills">
-							<li class="nav-item">
-								<a class="nav-link active" href="#scrollspyHeading1">First</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#scrollspyHeading2">Second</a>
-							</li>
-							<li class="nav-item dropdown">
-								<a
-									class="nav-link dropdown-toggle"
-									data-bs-toggle="dropdown"
-									href="/"
-									role="button"
-									aria-expanded="false">Dropdown</a
-								>
-								<ul class="dropdown-menu">
-									<li><a class="dropdown-item" href="#scrollspyHeading3">Third</a></li>
-									<li><a class="dropdown-item" href="#scrollspyHeading4">Fourth</a></li>
-									<li><hr class="dropdown-divider" /></li>
-									<li><a class="dropdown-item" href="#scrollspyHeading5">Fifth</a></li>
-								</ul>
-							</li>
-						</ul>
-					</nav>
-					<div
-						data-bs-spy="scroll"
-						data-bs-target="#navbar-example2"
-						data-bs-offset="0"
-						class="scrollspy-example"
-					>
-						<h4 id="scrollspyHeading1">First heading</h4>
-						<p>
-							This is some placeholder content for the scrollspy page. Note that as you scroll down
-							the page, the appropriate navigation link is highlighted. It's repeated throughout the
-							component example. We keep adding some more example copy here to emphasize the
-							scrolling and highlighting.
-						</p>
-						<h4 id="scrollspyHeading2">Second heading</h4>
-						<p>
-							This is some placeholder content for the scrollspy page. Note that as you scroll down
-							the page, the appropriate navigation link is highlighted. It's repeated throughout the
-							component example. We keep adding some more example copy here to emphasize the
-							scrolling and highlighting.
-						</p>
-						<h4 id="scrollspyHeading3">Third heading</h4>
-						<p>
-							This is some placeholder content for the scrollspy page. Note that as you scroll down
-							the page, the appropriate navigation link is highlighted. It's repeated throughout the
-							component example. We keep adding some more example copy here to emphasize the
-							scrolling and highlighting.
-						</p>
-						<h4 id="scrollspyHeading4">Fourth heading</h4>
-						<p>
-							This is some placeholder content for the scrollspy page. Note that as you scroll down
-							the page, the appropriate navigation link is highlighted. It's repeated throughout the
-							component example. We keep adding some more example copy here to emphasize the
-							scrolling and highlighting.
-						</p>
-						<h4 id="scrollspyHeading5">Fifth heading</h4>
-						<p>
-							This is some placeholder content for the scrollspy page. Note that as you scroll down
-							the page, the appropriate navigation link is highlighted. It's repeated throughout the
-							component example. We keep adding some more example copy here to emphasize the
-							scrolling and highlighting.
-						</p>
-					</div>
-				</div>
+				<Scrollspys />
 			</div>
 		</article>
 		<article class="my-3" id="spinners">
@@ -2486,13 +2359,3 @@
 		</div>
 	</div>
 </div>
-
-<style>
-	.scrollspy-example {
-		height: 10rem;
-		overflow-y: scroll;
-		padding: 1rem;
-		border: 1px solid rgb(208, 208, 208);
-		border-radius: 0 0 8px 8px;
-	}
-</style>

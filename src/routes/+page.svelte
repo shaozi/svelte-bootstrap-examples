@@ -1,5 +1,5 @@
 <script>
-	import HighlightCode from './highlight-code.svelte';
+	import HighlightCode from '../lib/highlight-code.svelte'
 </script>
 
 <div>
@@ -21,34 +21,34 @@
 	<p>
 		Bootstrap a powerful, feature-packed frontend toolkit. It defines and implements a complete
 		suite of commonly used components. All the details about responsiveness and accessibility have
-		been carefully considered and implemented under the hood. It's high quality and easy to use make
+		been carefully considered and implemented under the hood. Its quality and easy to use make
 		Bootstrap one of the most popular frontend toolkit.
 	</p>
 	<p>
-		Most of Bootstrap's components are css only. Except a few of them needs JavaScript for their
-		behaviors.
-	</p>
-	<p>They are:</p>
-	<ul>
-		<li>Tooltips,</li>
-		<li>Toasters,</li>
-		<li>Popovers, and</li>
-		<li>Scrollspy.</li>
-	</ul>
-	<p>
-		Bootstrap comes with its own Javascript. However, with Svelte, we want to integrate them into
-		Svelte.
+		Bootstrap has css and JavaScript to control the look and behavior of the components. The
+		JavaScript lib is designed for frontend only, that means it is expecting `document` and `window`
+		objects to be there the moment you import it in your page.
 	</p>
 	<p>
-		Because Svelte is compiled into HTML, css, and JavaScript. It is pretty easy to integrate 3rd
-		party JavaScript into a Svelte project. The methods introduced in this article can also be used
-		to integrate other JavaScript libraries into a Svelte project.
+		Because Svelte is compiled into HTML, css, and JavaScript. Svelte can make use of Bootstrap's
+		CSS without any changes. However, SvelteKit with SSR will run the Javascript on the server too.
+		Therefore, you have to put the `import` statement inside `onMount()` to make sure the Javascript
+		will be run in browser:
 	</p>
+	<HighlightCode
+		class="rounded border p-3"
+		code={`
+import { onMount } from 'svelte'
+onMount(async ()=>{
+	const { Toast } = await import('bootstrap')
+})
+	`}
+	/>
 
 	<h2>Installation</h2>
 	<p>First, let's install the needed libraries:</p>
 	<HighlightCode
-		class="rounded border"
+		class="rounded border p-3"
 		code={'npm install bootstrap\nnpm install @type/bootstrap\nnpm install @popper/core'}
 	/>
 </div>

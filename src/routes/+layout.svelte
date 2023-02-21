@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { LayoutData } from './$types';
-	import ThemeSwitch from './theme-switch.svelte';
+	import ThemeSwitch from '../lib/theme-switch.svelte';
 	export let data: LayoutData;
 	let routes = [
 		{ href: '/', name: 'Home' },
