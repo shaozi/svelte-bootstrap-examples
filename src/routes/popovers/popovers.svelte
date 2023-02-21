@@ -1,10 +1,15 @@
 <script lang="ts">
-	import { onMount } from 'svelte'
-
+	import { onMount, onDestroy } from 'svelte'
+	let popovers: any[] = []
 	onMount(async () => {
 		const { Popover } = await import('bootstrap')
 		let nodes = document.querySelectorAll('[data-bs-toggle="popover"]')
-		;[...nodes].map((popoverNode) => new Popover(popoverNode))
+		popovers = [...nodes].map((popoverNode) => Popover.getOrCreateInstance(popoverNode))
+	})
+	onDestroy(() => {
+		popovers.forEach((pop) => {
+			pop.hide()
+		})
 	})
 </script>
 
